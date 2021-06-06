@@ -1,9 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import NoteReducer from "./Note/NoteReducer";
+import HeaderReducer from "./Header/HeaderReducer";
 
 let reducers = combineReducers({
-Note: NoteReducer,
+Header: HeaderReducer
 })
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
