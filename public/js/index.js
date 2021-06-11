@@ -14453,7 +14453,8 @@ var drawerWidth = 240;
 var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__.default)(function (theme) {
   return {
     root: {
-      display: 'flex'
+      display: 'flex',
+      overflow: 'hidden'
     },
     appBar: {
       transition: theme.transitions.create(['margin', 'width'], {

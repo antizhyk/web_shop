@@ -11,6 +11,7 @@ const drawerWidth = 240;
 export const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+        overflow: 'hidden',
     },
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
