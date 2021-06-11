@@ -18,6 +18,16 @@ const initialState = {
         {name: 'Heart', image: Heart},
         {name: 'User', image: User},
         {name: 'Basket', image: Basket},
+    ],
+    mobAsideMenu: [
+        {name: 'Info', image: Info},
+        {name: 'Prize', image: Prize},
+        {name: 'Heart', image: Heart},
+    ],
+    mobHeaderMenu: [
+        {name: 'Shop', image: Store},
+        {name: 'User', image: User},
+        {name: 'Basket', image: Basket},
     ]
 
 }

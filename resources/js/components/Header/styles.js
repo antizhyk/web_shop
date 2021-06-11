@@ -31,7 +31,7 @@ export const HeaderItem = styled.div`
     flex: 0 0 33.333%;
     margin: 15px 10px 15px 0;
 
-    &:last-child{
+    &:last-child {
         margin-right: 0;
     }
 `
@@ -46,6 +46,7 @@ export const HeaderLink = styled(Link)`
     text-decoration: none;
     transition: color .3s;
     margin: 0 20px;
+
     &:hover {
         color: #000000;
     }
@@ -54,6 +55,7 @@ export const HeaderLink = styled(Link)`
         height: 20px;
         margin-left: 5px;
     }
+
 `
 export const HeaderForm = styled.form`
     .Mui-focused {
