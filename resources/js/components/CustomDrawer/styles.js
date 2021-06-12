@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {makeStyles} from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import AppBar from "@material-ui/core/AppBar";
-import ListItemText from "@material-ui/core/ListItemText";
 import Toolbar from "@material-ui/core/Toolbar";
 import {HeaderLink} from "../Header/styles";
 
@@ -79,7 +78,7 @@ export const ShopMobHeader = styled(AppBar)`
 
 export const ShopMobHeaderText = styled.span`
     color: #8d8d8d;
-    font-family: 'Montserrat',sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 100;
     font-size: 24px;
     margin-left: 10px;
@@ -87,20 +86,29 @@ export const ShopMobHeaderText = styled.span`
 
 export const ShopMobHeaderImg = styled.img`
     width: 20px;
-    `
+`
 
 export const ShopMobHeaderRow = styled(Toolbar)`
-justify-content: space-between;
+    justify-content: space-between;
 `
 
 export const ShopMobHeaderLink = styled(HeaderLink)`
 
-  @media (max-width: 540px){
-  width: 20px;
-  span{
-  display: none;
-  }
-  img{
-    transform: scale(1.5);
-  }
+    @media (max-width: 540px) {
+        width: 20px;
+        span {
+            display: none;
+        }
+
+        img {
+            transform: scale(1.5);
+        }
+`
+
+export const ShopMobMain = styled.main`
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100vh - 64px);
 `

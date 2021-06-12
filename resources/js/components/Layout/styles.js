@@ -7,6 +7,11 @@ export const DisplayMob = styled.div`
 `
 
 export const DisplayDesc = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+
     @media(max-width: 992px){
         display: none;
     }

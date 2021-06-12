@@ -6,8 +6,8 @@
 }
 
 /* Убираем внутренние отступы */
-ul[class],
-ol[class] {
+ul,
+ol {
     padding: 0;
 }
 
@@ -38,8 +38,8 @@ body {
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
-ul[class],
-ol[class] {
+ul,
+ol {
     list-style: none;
 }
 
@@ -77,3 +77,13 @@ select {
         scroll-behavior: auto !important;
     }
 }
+@media(max-width: 992px){
+#root > .MuiContainer-root{
+    padding: 64px 0 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 100vh;
+    }
+}
+

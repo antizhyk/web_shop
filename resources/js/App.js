@@ -5,7 +5,7 @@ import LayoutComponent from "./routers/LayoutComponent";
 const App = () => (
     <BrowserRouter>
         <Route exact path="/" render={() => <Redirect to="/main" />}/>
-        <LayoutComponent exact path="/main" component={<h1>Hi</h1>}/>
+        <LayoutComponent exact path="/main" />
     </BrowserRouter>
 )
 

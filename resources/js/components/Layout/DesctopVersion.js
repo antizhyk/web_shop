@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../Header";
 import {DisplayDesc} from "./styles";
+import Footer from "../Footer";
 
 const DesctopVersion = React.memo(() => {
 
@@ -8,6 +9,7 @@ const DesctopVersion = React.memo(() => {
         <DisplayDesc>
             <Header/>
             <>fasfa</>
+            <Footer/>
         </DisplayDesc>
     )
 })
