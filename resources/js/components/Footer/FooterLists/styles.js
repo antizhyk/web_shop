@@ -9,9 +9,16 @@ export const FooterListsWrapper = styled.div`
     justify-content: space-between;
     margin-top: 20px;
 
+
     @media (max-width: 1400px) {
         font-size: 0;
         display: block;
+    }
+
+    @media (max-width: 992px) {
+        margin-top: 0;
+        flex: 0 0 50%;
+        align-self: flex-end;
     }
 `
 
@@ -26,6 +33,19 @@ export const FooterListsBlock = styled.div`
         justify-content: flex-start;
     }
 
+    @media (max-width: 992px) {
+        margin-top: 0;
+        justify-content: flex-end;
+        flex: 0 0 100%;
+        margin-left: 100px;
+    }
+
+`
+
+export const FooterPayList = styled(FooterListsBlock)`
+    @media (max-width: 992px) {
+        display: none;
+    }
 `
 
 export const FooterListsItem = styled.div`

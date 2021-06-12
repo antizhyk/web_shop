@@ -24,8 +24,21 @@ export const FooterPaper = styled(Paper)`
 `
 
 export const FooterLastPaper = styled(FooterPaper)`
-    border-left: 1px solid #bbb;
     height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    @media(min-width: 993px){
+        border-left: 1px solid #bbb;
+        display: block;
+    }
+
+    @media(max-width: 756px){
+display: block;
+        padding: 10px;
+    }
 `
 
 
@@ -44,4 +57,11 @@ export const FooterLink = styled(Link)`
     &:hover{
         text-decoration: underline;
     }
+`
+
+export const FooterLeft = styled(Grid)`
+@media(max-width: 992px){
+    display: none;
+}
+
 `

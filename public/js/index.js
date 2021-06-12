@@ -11104,6 +11104,112 @@ function getTransitionProps(props, options) {
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/core/esm/useMediaQuery/useMediaQuery.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/useMediaQuery/useMediaQuery.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useMediaQuery)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/styles */ "./node_modules/@material-ui/styles/esm/useTheme/useTheme.js");
+/* harmony import */ var _material_ui_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/styles */ "./node_modules/@material-ui/styles/esm/getThemeProps/getThemeProps.js");
+
+
+
+function useMediaQuery(queryInput) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var theme = (0,_material_ui_styles__WEBPACK_IMPORTED_MODULE_2__.default)();
+  var props = (0,_material_ui_styles__WEBPACK_IMPORTED_MODULE_3__.default)({
+    theme: theme,
+    name: 'MuiUseMediaQuery',
+    props: {}
+  });
+
+  if (true) {
+    if (typeof queryInput === 'function' && theme === null) {
+      console.error(['Material-UI: The `query` argument provided is invalid.', 'You are providing a function without a theme in the context.', 'One of the parent elements needs to use a ThemeProvider.'].join('\n'));
+    }
+  }
+
+  var query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
+  query = query.replace(/^@media( ?)/m, ''); // Wait for jsdom to support the match media feature.
+  // All the browsers Material-UI support have this built-in.
+  // This defensive check is here for simplicity.
+  // Most of the time, the match media logic isn't central to people tests.
+
+  var supportMatchMedia = typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
+
+  var _props$options = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, props, options),
+      _props$options$defaul = _props$options.defaultMatches,
+      defaultMatches = _props$options$defaul === void 0 ? false : _props$options$defaul,
+      _props$options$matchM = _props$options.matchMedia,
+      matchMedia = _props$options$matchM === void 0 ? supportMatchMedia ? window.matchMedia : null : _props$options$matchM,
+      _props$options$noSsr = _props$options.noSsr,
+      noSsr = _props$options$noSsr === void 0 ? false : _props$options$noSsr,
+      _props$options$ssrMat = _props$options.ssrMatchMedia,
+      ssrMatchMedia = _props$options$ssrMat === void 0 ? null : _props$options$ssrMat;
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_1__.useState(function () {
+    if (noSsr && supportMatchMedia) {
+      return matchMedia(query).matches;
+    }
+
+    if (ssrMatchMedia) {
+      return ssrMatchMedia(query).matches;
+    } // Once the component is mounted, we rely on the
+    // event listeners to return the correct matches value.
+
+
+    return defaultMatches;
+  }),
+      match = _React$useState[0],
+      setMatch = _React$useState[1];
+
+  react__WEBPACK_IMPORTED_MODULE_1__.useEffect(function () {
+    var active = true;
+
+    if (!supportMatchMedia) {
+      return undefined;
+    }
+
+    var queryList = matchMedia(query);
+
+    var updateMatch = function updateMatch() {
+      // Workaround Safari wrong implementation of matchMedia
+      // TODO can we remove it?
+      // https://github.com/mui-org/material-ui/pull/17315#issuecomment-528286677
+      if (active) {
+        setMatch(queryList.matches);
+      }
+    };
+
+    updateMatch();
+    queryList.addListener(updateMatch);
+    return function () {
+      active = false;
+      queryList.removeListener(updateMatch);
+    };
+  }, [query, matchMedia, supportMatchMedia]);
+
+  if (true) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    react__WEBPACK_IMPORTED_MODULE_1__.useDebugValue({
+      query: query,
+      match: match
+    });
+  }
+
+  return match;
+}
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/core/esm/utils/capitalize.js":
 /*!****************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/utils/capitalize.js ***!
@@ -15862,7 +15968,8 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__.default
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightRegular
+      fontWeight: theme.typography.fontWeightRegular,
+      textTransform: 'uppercase'
     }
   };
 });
@@ -16231,25 +16338,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles */ "./resources/js/components/Footer/FooterForm/styles.js");
 /* harmony import */ var _images_footer_send_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../images/footer/send.svg */ "./resources/images/footer/send.svg");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/useMediaQuery/useMediaQuery.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
 
 
+
 var FooterForm = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo(function () {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("form", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterFormRow, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterLabel, {
-        "for": "footer-input",
-        children: "Subscribe"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterInput, {
-        type: "email",
-        id: "footer_input"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterSubmit, {
-        bg: _images_footer_send_svg__WEBPACK_IMPORTED_MODULE_2__.default,
-        type: "submit"
-      })]
+  var matches = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default)('(max-width:756px)');
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterFormWrapper, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("form", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterFormRow, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterLabel, {
+          "for": "footer-input",
+          children: "Subscribe"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterItem, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterInput, {
+            type: "email",
+            id: "footer_input",
+            placeholder: matches && 'Subscribe'
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterSubmit, {
+            bg: _images_footer_send_svg__WEBPACK_IMPORTED_MODULE_2__.default,
+            type: "submit"
+          })]
+        })]
+      })
     })
   });
 });
@@ -16266,24 +16381,28 @@ var FooterForm = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo(function (
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FooterFormWrapper": () => (/* binding */ FooterFormWrapper),
 /* harmony export */   "FooterFormRow": () => (/* binding */ FooterFormRow),
 /* harmony export */   "FooterLabel": () => (/* binding */ FooterLabel),
 /* harmony export */   "FooterInput": () => (/* binding */ FooterInput),
-/* harmony export */   "FooterSubmit": () => (/* binding */ FooterSubmit)
+/* harmony export */   "FooterSubmit": () => (/* binding */ FooterSubmit),
+/* harmony export */   "FooterItem": () => (/* binding */ FooterItem)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var FooterFormRow = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n\n    @media (max-width: 1200px) {\n        flex-wrap: wrap;\n    }\n"])));
-var FooterLabel = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.label(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    font-size: 22px;\n    color: #727272;\n    font-family: 'Montserrat', 'sans-serif';\n    margin-right: 10px;\n\n    @media (max-width: 1200px) {\n        flex: 0 0 100%;\n    }\n"])));
-var FooterInput = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.input(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    border: 1px solid #727272;\n    height: 35px;\n    font-size: 17px;\n    width: 60%;\n\n    @media (max-width: 1200px) {\n        width: 80%;\n    }\n"])));
-var FooterSubmit = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    border: 1px solid #727272;\n    height: 35px;\n    padding: 0 25px;\n    border-left: 0;\n    background-color: #fff;\n    background-image: url(", ");\n    background-repeat: no-repeat;\n    background-position: center;\n    background-size: 500%;\n"])), function (_ref) {
+var FooterFormWrapper = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n@media(max-width: 992px){\n    flex: 0 0 50%;\n}\n"])));
+var FooterFormRow = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n\n    @media (max-width: 1200px) {\n        flex-wrap: wrap;\n    }\n\n    @media (max-width: 756px) {\n        flex-wrap: wrap;\n        justify-content: flex-end;\n        padding-right: 50px;\n        margin-bottom: 15px;\n    }\n"])));
+var FooterLabel = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.label(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    font-size: 22px;\n    color: #727272;\n    font-family: 'Montserrat', 'sans-serif';\n    margin-right: 10px;\n\n    @media (max-width: 1200px) {\n        flex: 0 0 100%;\n    }\n\n    @media (max-width: 992px) {\n        flex: 0 0 110px;\n    }\n\n    @media (max-width: 756px) {\n        display: none;\n    }\n"])));
+var FooterInput = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.input(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    border: 1px solid #727272;\n    height: 35px;\n    font-size: 17px;\n    width: 100%;\n    flex: 0 0 100%;\n"])));
+var FooterSubmit = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.button(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    border: 1px solid #727272;\n    height: 35px;\n    padding: 0 25px;\n    border-left: 0;\n    background-color: #fff;\n    background-image: url(", ");\n    background-repeat: no-repeat;\n    background-position: center;\n    background-size: 500%;\n"])), function (_ref) {
   var bg = _ref.bg;
   return bg;
 });
+var FooterItem = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    display: flex;\n    width: 54%;\n\n    @media (max-width: 1200px) {\n        width: 80%;\n    }\n    @media (max-width: 992px) {\n        flex: 0 0 250px;\n    }\n    "])));
 
 /***/ }),
 
@@ -16318,14 +16437,14 @@ var FooterLists = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo(function 
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterListsWrapper, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterListsBlock, {
-      children: social.map(function (el, i) {
+      children: social.map(function (el) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterListsLink, {
           to: el.link,
           bg: el.image
         }, el.id);
       })
-    }), "//", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterListsBlock, {
-      children: pay.map(function (el, i) {
+    }), "//", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterPayList, {
+      children: pay.map(function (el) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterListsLink, {
           to: el.link,
           bg: el.image
@@ -16349,19 +16468,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "FooterListsWrapper": () => (/* binding */ FooterListsWrapper),
 /* harmony export */   "FooterListsBlock": () => (/* binding */ FooterListsBlock),
+/* harmony export */   "FooterPayList": () => (/* binding */ FooterPayList),
 /* harmony export */   "FooterListsItem": () => (/* binding */ FooterListsItem),
 /* harmony export */   "FooterListsLink": () => (/* binding */ FooterListsLink)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var FooterListsWrapper = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    display: flex;\n    font-size: 28px;\n    font-family: 'Monsterat', sans-serif;\n    color: #000000;\n    align-items: center;\n    justify-content: space-between;\n    margin-top: 20px;\n\n    @media (max-width: 1400px) {\n        font-size: 0;\n        display: block;\n    }\n"])));
-var FooterListsBlock = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    flex: 0 0 45%;\n\n    @media (max-width: 1400px) {\n        margin-top: 15px;\n        justify-content: flex-start;\n    }\n\n"])));
-var FooterListsItem = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n\n"])));
-var FooterListsLink = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.a(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    display: inline-block;\n    width: 25px;\n    height: 25px;\n    background: #fff url(", ") center / contain no-repeat;\n    @media (max-width: 1400px) {\n        margin-right: 15px;\n    }\n"])), function (_ref) {
+var FooterListsWrapper = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    display: flex;\n    font-size: 28px;\n    font-family: 'Monsterat', sans-serif;\n    color: #000000;\n    align-items: center;\n    justify-content: space-between;\n    margin-top: 20px;\n\n\n    @media (max-width: 1400px) {\n        font-size: 0;\n        display: block;\n    }\n\n    @media (max-width: 992px) {\n        margin-top: 0;\n        flex: 0 0 50%;\n        align-self: flex-end;\n    }\n"])));
+var FooterListsBlock = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    flex: 0 0 45%;\n\n    @media (max-width: 1400px) {\n        margin-top: 15px;\n        justify-content: flex-start;\n    }\n\n    @media (max-width: 992px) {\n        margin-top: 0;\n        justify-content: flex-end;\n        flex: 0 0 100%;\n        margin-left: 100px;\n    }\n\n"])));
+var FooterPayList = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.default)(FooterListsBlock)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    @media (max-width: 992px) {\n        display: none;\n    }\n"])));
+var FooterListsItem = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n\n"])));
+var FooterListsLink = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.a(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    display: inline-block;\n    width: 25px;\n    height: 25px;\n    background: #fff url(", ") center / contain no-repeat;\n    @media (max-width: 1400px) {\n        margin-right: 15px;\n    }\n"])), function (_ref) {
   var bg = _ref.bg;
   return bg;
 });
@@ -16381,7 +16502,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles */ "./resources/js/components/Footer/styles.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/useMediaQuery/useMediaQuery.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _FooterForm_FooterForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FooterForm/FooterForm */ "./resources/js/components/Footer/FooterForm/FooterForm.js");
 /* harmony import */ var _FooterLists_FooterLists__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FooterLists/FooterLists */ "./resources/js/components/Footer/FooterLists/FooterLists.js");
@@ -16400,14 +16522,15 @@ var Footer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo(function () {
     var Footer = _ref.Footer;
     return Footer.mainList;
   });
+  var matches = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default)('(max-width:992px)');
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterWrapper, {
       container: true,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterLeft, {
         container: true,
         item: true,
         xs: 8,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
           item: true,
           xs: 4,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterPaper, {
@@ -16425,7 +16548,7 @@ var Footer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo(function () {
               })
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
           item: true,
           xs: 4,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterPaper, {
@@ -16443,7 +16566,7 @@ var Footer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo(function () {
               })
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
           item: true,
           xs: 4,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterPaper, {
@@ -16462,9 +16585,9 @@ var Footer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo(function () {
             })]
           })
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
         item: true,
-        xs: 4,
+        xs: matches ? 12 : 4,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_styles__WEBPACK_IMPORTED_MODULE_1__.FooterLastPaper, {
           className: classes.paper,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_FooterForm_FooterForm__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_FooterLists_FooterLists__WEBPACK_IMPORTED_MODULE_4__.default, {})]
@@ -16491,14 +16614,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "FooterPaper": () => (/* binding */ FooterPaper),
 /* harmony export */   "FooterLastPaper": () => (/* binding */ FooterLastPaper),
 /* harmony export */   "FooterTitle": () => (/* binding */ FooterTitle),
-/* harmony export */   "FooterLink": () => (/* binding */ FooterLink)
+/* harmony export */   "FooterLink": () => (/* binding */ FooterLink),
+/* harmony export */   "FooterLeft": () => (/* binding */ FooterLeft)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -16517,9 +16641,10 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_0__.default
 });
 var FooterWrapper = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.default)(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__.default)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    border: 1px solid #bbb;\n    border-bottom: 0;\n"])));
 var FooterPaper = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.default)(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__.default)(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    border-radius: 0;\n    box-shadow: none;\n    height: 100%;\n    text-align: left;\n"])));
-var FooterLastPaper = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.default)(FooterPaper)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    border-left: 1px solid #bbb;\n    height: 100%;\n"])));
+var FooterLastPaper = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.default)(FooterPaper)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    height: 100%;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    flex-wrap: wrap;\n\n    @media(min-width: 993px){\n        border-left: 1px solid #bbb;\n        display: block;\n    }\n\n    @media(max-width: 756px){\ndisplay: block;\n        padding: 10px;\n    }\n"])));
 var FooterTitle = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    font-size: 20px;\n    color: #727272 ;\n    font-family: Montserrat, 'sans-serif';\n    margin-bottom: 10px;\n"])));
 var FooterLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    text-decoration: none;\n    color: #727272;\n    font-size: 18px;\n\n    &:hover{\n        text-decoration: underline;\n    }\n"])));
+var FooterLeft = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.default)(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__.default)(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n@media(max-width: 992px){\n    display: none;\n}\n\n"])));
 
 /***/ }),
 

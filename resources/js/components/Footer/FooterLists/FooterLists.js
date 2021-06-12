@@ -1,5 +1,5 @@
 import React from "react";
-import {FooterListsBlock, FooterListsLink, FooterListsWrapper} from "./styles";
+import {FooterListsBlock, FooterListsLink, FooterListsWrapper, FooterPayList} from "./styles";
 import {useSelector} from "react-redux";
 
 const FooterLists = React.memo(() => {
@@ -9,16 +9,16 @@ const FooterLists = React.memo(() => {
     return (
         <FooterListsWrapper>
             <FooterListsBlock>
-                {social.map((el, i) => (
+                {social.map((el) => (
                     <FooterListsLink key={el.id} to={el.link} bg={el.image}/>
                 ))}
             </FooterListsBlock>
             //
-            <FooterListsBlock>
-                {pay.map((el, i) => (
+            <FooterPayList>
+                {pay.map((el) => (
                     <FooterListsLink key={el.id} to={el.link} bg={el.image}/>
                 ))}
-            </FooterListsBlock>
+            </FooterPayList>
         </FooterListsWrapper>
     )
 })

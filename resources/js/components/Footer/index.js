@@ -1,6 +1,6 @@
 import React from 'react'
-import {FooterLastPaper, FooterLink, FooterPaper, FooterTitle, FooterWrapper, useStyles} from "./styles";
-import {Grid} from "@material-ui/core";
+import {FooterLastPaper, FooterLeft, FooterLink, FooterPaper, FooterTitle, FooterWrapper, useStyles} from "./styles";
+import {Grid, useMediaQuery} from "@material-ui/core";
 import {useSelector} from "react-redux";
 import FooterForm from "./FooterForm/FooterForm";
 import FooterLists from "./FooterLists/FooterLists";
@@ -8,11 +8,12 @@ import FooterLists from "./FooterLists/FooterLists";
 const Footer = React.memo(() => {
     const classes = useStyles();
     const mainList = useSelector(({Footer}) => Footer.mainList)
+    const matches = useMediaQuery('(max-width:992px)');
 
     return (
         <div>
             <FooterWrapper container>
-                <Grid container item xs={8}>
+                <FooterLeft container item xs={8}>
                     <Grid item xs={4}>
                         <FooterPaper className={classes.paper}>
                             <FooterTitle>CUSTOMER SERVICE</FooterTitle>
@@ -49,8 +50,8 @@ const Footer = React.memo(() => {
                             </ul>
                         </FooterPaper>
                     </Grid>
-                </Grid>
-                <Grid item xs={4}>
+                </FooterLeft>
+                <Grid item xs={matches ? 12 : 4}>
                     <FooterLastPaper className={classes.paper}>
                         <FooterForm/>
                         <FooterLists/>
