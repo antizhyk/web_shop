@@ -6,6 +6,7 @@ export const SliderWrapper = styled.div`
     height: 450px;
     position: relative;
     max-width: 100vw;
+    margin-bottom: 20px;
 
     .swiper-container {
         height: 100%;
