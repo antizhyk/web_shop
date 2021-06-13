@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 const LayoutComponent = ({component: Component, ...rest}) => (
     <Route {...rest} render={props => (
         <Layout>
-            {/*<Component {...props}/>*/}
+            <Component {...props}/>
         </Layout>
     )}/>
 )

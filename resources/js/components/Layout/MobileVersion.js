@@ -3,12 +3,11 @@ import CustomDrawer from "../CustomDrawer";
 import {DisplayMob} from "./styles";
 
 
-const MobileVersion = React.memo(() => {
+const MobileVersion = React.memo(({children}) => {
 
     return(
         <DisplayMob>
-            <CustomDrawer children={'hihihi'}/>
-
+            <CustomDrawer children={children}/>
         </DisplayMob>
     )
 })

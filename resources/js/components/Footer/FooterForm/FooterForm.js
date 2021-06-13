@@ -5,6 +5,7 @@ import {useMediaQuery} from "@material-ui/core";
 
 const FooterForm = React.memo(() => {
     const matches = useMediaQuery('(max-width:756px)');
+    const value = matches ? 'Subscribe' : ''
 
     return (
         <FooterFormWrapper>
@@ -14,7 +15,7 @@ const FooterForm = React.memo(() => {
                         Subscribe
                     </FooterLabel>
                     <FooterItem>
-                        <FooterInput type='email' id='footer_input' placeholder={matches && 'Subscribe'}/>
+                        <FooterInput type='email' id='footer_input' placeholder={value}/>
                         <FooterSubmit bg={Send} type='submit'/>
                     </FooterItem>
                 </FooterFormRow>

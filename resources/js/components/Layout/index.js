@@ -3,12 +3,12 @@ import {Container} from "@material-ui/core";
 import DesctopVersion from "./DesctopVersion";
 import MobileVersion from "./MobileVersion";
 
-const Layout = React.memo(() => {
+const Layout = React.memo(({children}) => {
 
     return(
         <Container>
-            <MobileVersion/>
-            <DesctopVersion/>
+            <MobileVersion children={children}/>
+            <DesctopVersion children={children}/>
         </Container>
     )
 })

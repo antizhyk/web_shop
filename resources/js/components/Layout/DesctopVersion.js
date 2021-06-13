@@ -3,12 +3,12 @@ import Header from "../Header";
 import {DisplayDesc} from "./styles";
 import Footer from "../Footer";
 
-const DesctopVersion = React.memo(() => {
+const DesctopVersion = React.memo(({children}) => {
 
     return (
         <DisplayDesc>
             <Header/>
-            <>fasfa</>
+            {children}
             <Footer/>
         </DisplayDesc>
     )
